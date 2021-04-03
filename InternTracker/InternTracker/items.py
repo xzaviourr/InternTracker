@@ -15,3 +15,11 @@ class InternshalaItem(scrapy.Item):
     stipend = scrapy.Field()
     deadline = scrapy.Field()
     pass
+
+class LetsInternItem(scrapy.Item):
+    role = scrapy.Field()
+    company = scrapy.Field()
+    location = scrapy.Field()
+    start_date = scrapy.Field()
+    stipend = scrapy.Field()
+    pass
