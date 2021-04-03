@@ -12,6 +12,8 @@ class InternshalaItem(scrapy.Item):
     location = scrapy.Field()
     start_date = scrapy.Field()
     duration = scrapy.Field()
-    stipend = scrapy.Field()
+    stipendmin = scrapy.Field()
+    stipendmax = scrapy.Field()
     deadline = scrapy.Field()
+    link = scrapy.Field()
     pass
