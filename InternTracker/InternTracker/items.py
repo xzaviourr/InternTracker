@@ -26,6 +26,7 @@ class LetsInternItem(scrapy.Item):
     start_date = scrapy.Field()
     end_date=scrapy.Field()
     deadline=scrapy.Field()
-    stipend = scrapy.Field()
+    stipendmin = scrapy.Field()
+    stipendmax = scrapy.Field()
     link=scrapy.Field()
     pass

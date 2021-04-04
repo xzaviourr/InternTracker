@@ -28,8 +28,14 @@ class LetsIntern(scrapy.Spider):
             posting['start_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["StartDate"][0:10])
             posting['end_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["EndDate"][0:10])
             posting['deadline'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["ApplicationDeadline"][0:10])
-            posting['stipend'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["Amount"]
-            posting["link"]=r["resp"]["data"]["featured_jobs"][i]["_source"]["publicLink"]
+            pay = str(r["resp"]["data"]["jobs"][i]["_source"]["Amount"])
+            if '-' in pay:
+                pay=pay.split("-")
+            else:
+                pay=list(pay)
+            posting['stipendmin'] = pay[0]
+            posting['stipendmax'] = pay[-1]
+            posting["link"]="https://www.letsintern.com"+r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
             yield posting
         
         for i in range(50):
@@ -41,8 +47,14 @@ class LetsIntern(scrapy.Spider):
             posting['start_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["StartDate"][0:10])
             posting['end_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["EndDate"][0:10])
             posting['deadline'] = (r["resp"]["data"]["jobs"][i]["_source"]["ApplicationDeadline"][0:10])
-            posting['stipend'] = r["resp"]["data"]["jobs"][i]["_source"]["Amount"]
-            posting["link"]=r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
+            pay = str(r["resp"]["data"]["jobs"][i]["_source"]["Amount"])
+            if '-' in pay:
+                pay=pay.split("-")
+            else:
+                pay=list(pay)
+            posting['stipendmin'] = pay[0]
+            posting['stipendmax'] = pay[-1]
+            posting["link"]="https://www.letsintern.com"+r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
             yield posting
         
 
