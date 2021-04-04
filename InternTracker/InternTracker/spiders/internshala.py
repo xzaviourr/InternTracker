@@ -3,6 +3,7 @@ from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshalaItem
+import time
 
 def dateformat(date) :
 
@@ -14,12 +15,20 @@ def dateformat(date) :
     return correct
 
 class Internshala(scrapy.Spider):
+    
     name = "internshala_spy"
-    allowed_domains = ["https://internshala.com/internships/engineering-internship/"]
-    number_of_pages = 60
-    start_urls = [str("https://internshala.com/internships/engineering-internship/page-" + str(x)) for x in range(1, number_of_pages+1)]
+    # allowed_domains = ["https://internshala.com/internships/engineering-internship/"]
+    start_urls = ["https://internshala.com/internships/engineering-internship/"]
 
-    def parse(self, response):
+    def parse(self,response) :
+
+        number_of_pages = int(response.css("#total_pages::text").get())
+        for i in range(1,number_of_pages + 1) :
+            time.sleep(0.125)
+            yield scrapy.Request(url = str(self.start_urls[0] + "page-" + str(i)),callback = self.parse_page)
+
+    def parse_page(self, response) :
+
         roles = response.css(".heading_4_5 a::text").getall()
 
         companies = response.css(".heading_6 a::text").getall()
