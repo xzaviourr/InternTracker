@@ -13,7 +13,7 @@ This software tracks new internship openings from various sites which includes i
     ```
 3. Create a new virtual environment named "venv" 
     ```bash
-    python3.8 -m venv venv
+    python3 -m venv venv
     ```
 
 4. Activate the newly created virtual environment  
