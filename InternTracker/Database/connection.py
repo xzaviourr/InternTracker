@@ -2,8 +2,9 @@ import psycopg2
 import json
 
 class Database:
+
     def __init__(self):
-        file = open('connection.config')
+        file = open('C:/CODING/GIT/InternTracker/InternTracker/Database/connection.config')
         credentials_raw = file.read()
         credentials_dict = json.loads(credentials_raw)
 

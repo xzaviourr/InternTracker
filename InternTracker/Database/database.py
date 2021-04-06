@@ -1,8 +1,6 @@
 import psycopg2
-
-conn = psycopg2.connect("dbname = <PLACEHOLDER> user = <PLACEHOLDER> password = <PLACEHOLDER>") # Fill <PLACEHOLDER>'s with values as per respective setups
-
-cur = conn.cursor()
+from connection import obj
+from logger import db_logger
 
 tables = [
     """
@@ -82,11 +80,21 @@ tables = [
     """
 ]
 
-for table in tables :
-    cur.execute(table)
+try :
 
-cur.close()
+    conn = obj.connect()
 
-conn.commit()
+    cur = conn.cursor()
 
-conn.close()
+    for table in tables :
+        cur.execute(table)
+
+    cur.close()
+
+    conn.commit()
+
+    conn.close()
+
+except :
+
+    db_logger.error("Error in connection to database")
