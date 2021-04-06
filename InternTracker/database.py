@@ -25,6 +25,7 @@ tables = [
     CREATE TABLE IF NOT EXISTS Users (
         User_id INTEGER,
         Name VARCHAR,
+        Password VARCHAR,
         Email VARCHAR,
         Phone VARCHAR,
         Year VARCHAR
