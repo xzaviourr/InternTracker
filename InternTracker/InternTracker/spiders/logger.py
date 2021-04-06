@@ -22,4 +22,6 @@ internshala_handler.setLevel(logging.ERROR)
 internshala_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 internshala_handler.setFormatter(internshala_format)
 # Add handlers to the logger for internshala
-internshala_logger.addHandler(internshala_handler) 
+internshala_logger.addHandler(internshala_handler)
+
+ 
