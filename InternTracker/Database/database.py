@@ -5,14 +5,14 @@ from logger import db_logger
 tables = [
     """
     CREATE TABLE IF NOT EXISTS Alumni (
-        Alumni_id INTEGER,
+        Alumni_id SERIAL PRIMARY KEY,
         Linkedin_url VARCHAR,
         Year VARCHAR
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS Companies (
-        Company_id INTEGER,
+        Company_id SERIAL PRIMARY KEY,
         Name VARCHAR,
         Stipend_min INTEGER,
         Stipend_max INTEGER,
@@ -21,7 +21,7 @@ tables = [
     """,
     """
     CREATE TABLE IF NOT EXISTS Users (
-        User_id INTEGER,
+        User_id SERIAL PRIMARY KEY,
         Name VARCHAR,
         Password VARCHAR,
         Email VARCHAR,
@@ -31,20 +31,23 @@ tables = [
     """,
     """
     CREATE TABLE IF NOT EXISTS Internships (
-        Internship_id INTEGER,
-        Company_id INTEGER,
+        Internship_id SERIAL PRIMARY KEY,
+        Company_name VARCHAR,
         Start_date VARCHAR,
         Deadline VARCHAR,
-        Stipend INTEGER,
+        Stipend_min INTEGER,
+        Stipend_max INTEGER,
         Number_of_applicants INTEGER,
         Posting_date VARCHAR,
         Role VARCHAR,
-        Category_id INTEGER
+        Category_id INTEGER,
+        Link VARCHAR,
+        Location VARCHAR
     )
     """,
     """
     CREATE TABLE IF NOT EXISTS Skills (
-        Skill_id INTEGER,
+        Skill_id SERIAL PRIMARY KEY,
         Skill_name VARCHAR
     )
     """,
