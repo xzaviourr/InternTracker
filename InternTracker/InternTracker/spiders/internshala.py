@@ -2,7 +2,7 @@ import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
-from InternTracker.items import InternshalaItem
+from InternTracker.items import InternshipPosting
 from InternTracker.spiders.logger import normal_site_logger
 import time
 
@@ -59,16 +59,19 @@ class Internshala(scrapy.Spider):
             for i in range(len(roles)):
                 if durations[i].split(' ')[-1] not in ['Months','Month','Weeks','Week'] :
                     durations[i],deadlines[i] = deadlines[i],durations[i]
-                posting = InternshalaItem()
+                posting = InternshipPosting()
                 posting['role'] = roles[i]
-                posting['company'] = companies[i]
+                posting['company_name'] = companies[i]
                 posting['location'] = locations[i]
                 posting['start_date'] = start_dates[i]
-                posting['duration'] = int(durations[i].split(' ')[0])
+                # posting['duration'] = int(durations[i].split(' ')[0])
                 posting['stipendmin'] = stipends[i].split(' ')[0].split('-')[0]
                 posting['stipendmax'] = stipends[i].split(' ')[0].split('-')[-1]
                 posting['deadline'] = dateformat(deadlines[i])
                 posting['link'] = "https://internshala.com" + link[i]
+                posting['number_of_applicants'] = ""
+                posting['posting_date'] = ""
+                posting['category_id'] = ""
                 yield posting
         except :
             normal_site_logger.error("Error in storage item")
