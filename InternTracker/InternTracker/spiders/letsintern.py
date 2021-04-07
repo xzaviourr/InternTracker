@@ -3,7 +3,7 @@ from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
 from InternTracker.items import LetsInternItem
-from InternTracker.spiders.logger import letsintern_logger
+from InternTracker.spiders.logger import normal_site_logger
 import json
 import requests
 import csv
@@ -27,7 +27,7 @@ class LetsIntern(scrapy.Spider):
         try:
             r = (requests.get(url)).json()
         except:
-            letsintern_logger.error("Error in making request")
+            normal_site_logger.error("Error in making request")
 
         '''There are 2 lists for the 2 types of jobs: featured and non-featured'''
         # extracting data from list of featured jobs
@@ -52,7 +52,7 @@ class LetsIntern(scrapy.Spider):
                 posting["link"] = "https://www.letsintern.com" +r["resp"]["data"]["featured_jobs"][i]["_source"]["publicLink"]
                 yield posting
             except:
-                letsintern_logger.error("Error extracting job")
+                normal_site_logger.error("Error extracting job")
 
         #extracting data from list of non-featured jobs
         non_featured = len(r["resp"]["data"]["jobs"])
@@ -76,4 +76,4 @@ class LetsIntern(scrapy.Spider):
                 posting["link"] = "https://www.letsintern.com" + r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
                 yield posting
             except:
-                letsintern_logger.error("Error extracting job")
+                normal_site_logger.error("Error extracting job")

@@ -30,3 +30,18 @@ class LetsInternItem(scrapy.Item):
     stipendmax = scrapy.Field()
     link=scrapy.Field()
     pass
+
+# Unified item to be used for storing data instead of the previous created ones
+
+class DatabaseItem(scrapy.Item) :
+
+    internship_id = scrapy.Field()
+    company_id = scrapy.Field()
+    start_date = scrapy.Field()
+    deadline = scrapy.Field()
+    stipend = scrapy.Field()
+    number_of_applicants = scrapy.Field()
+    posting_date = scrapy.Field()
+    role = scrapy.Field()
+    category_id = scrapy.Field()
+    pass
