@@ -2,7 +2,7 @@ import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
-from InternTracker.items import LetsInternItem
+from InternTracker.items import InternshipPosting
 from InternTracker.spiders.logger import normal_site_logger
 import json
 import requests
@@ -33,14 +33,14 @@ class LetsIntern(scrapy.Spider):
         # extracting data from list of featured jobs
         featured = len(r["resp"]["data"]["featured_jobs"])
         for i in range(featured):
-            posting = LetsInternItem()
+            posting = InternshipPosting()
             try:
-                posting['job_no'] = i+1
+                # posting['job_no'] = i+1
                 posting['role'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["Title"]
-                posting['company'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["CompanyName"]
+                posting['company_name'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["CompanyName"]
                 posting['location'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["locationStr"]
                 posting['start_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["StartDate"][0:10])
-                posting['end_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["EndDate"][0:10])
+                # posting['end_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["EndDate"][0:10])
                 posting['deadline'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["ApplicationDeadline"][0:10])
                 pay = str(r["resp"]["data"]["featured_jobs"][i]["_source"]["Amount"])
                 if '-' in pay:
@@ -49,7 +49,10 @@ class LetsIntern(scrapy.Spider):
                     pay = list(pay)
                 posting['stipendmin'] = pay[0]
                 posting['stipendmax'] = pay[-1]
-                posting["link"] = "https://www.letsintern.com" +r["resp"]["data"]["featured_jobs"][i]["_source"]["publicLink"]
+                posting['link'] = "https://www.letsintern.com" +r["resp"]["data"]["featured_jobs"][i]["_source"]["publicLink"]
+                posting['number_of_applicants'] = ""
+                posting['posting_date'] = ""
+                posting['category_id'] = ""
                 yield posting
             except:
                 normal_site_logger.error("Error extracting job")
@@ -58,13 +61,13 @@ class LetsIntern(scrapy.Spider):
         non_featured = len(r["resp"]["data"]["jobs"])
         for i in range(non_featured):
             try:
-                posting = LetsInternItem()
-                posting['job_no'] = featured+i+1
+                posting = InternshipPosting()
+                # posting['job_no'] = featured+i+1
                 posting['role'] = r["resp"]["data"]["jobs"][i]["_source"]["Title"]
-                posting['company'] = r["resp"]["data"]["jobs"][i]["_source"]["CompanyName"]
+                posting['company_name'] = r["resp"]["data"]["jobs"][i]["_source"]["CompanyName"]
                 posting['location'] = r["resp"]["data"]["jobs"][i]["_source"]["locationString"]
                 posting['start_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["StartDate"][0:10])
-                posting['end_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["EndDate"][0:10])
+                # posting['end_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["EndDate"][0:10])
                 posting['deadline'] = (r["resp"]["data"]["jobs"][i]["_source"]["ApplicationDeadline"][0:10])
                 pay = str(r["resp"]["data"]["jobs"][i]["_source"]["Amount"])
                 if '-' in pay:
@@ -73,7 +76,10 @@ class LetsIntern(scrapy.Spider):
                     pay = list(pay)
                 posting['stipendmin'] = pay[0]
                 posting['stipendmax'] = pay[-1]
-                posting["link"] = "https://www.letsintern.com" + r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
+                posting['link'] = "https://www.letsintern.com" + r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
+                posting['number_of_applicants'] = ""
+                posting['posting_date'] = ""
+                posting['category_id'] = ""
                 yield posting
             except:
                 normal_site_logger.error("Error extracting job")
