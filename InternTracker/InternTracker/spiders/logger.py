@@ -1,29 +1,28 @@
 import logging
 
-#For LetsIntern
+#For normal_site
 # Create a custom logger
-letsintern_logger = logging.getLogger(__name__)
+normal_site_logger = logging.getLogger(__name__)
 # Create handlers
-letsintern_handler = logging.FileHandler('letsintern_logger.log')
-letsintern_handler.setLevel(logging.ERROR)
+normal_site_handler = logging.FileHandler('normal_site_logger.log')
+normal_site_handler.setLevel(logging.ERROR)
 # Create formatters and add it to handlers
-letsintern_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-letsintern_handler.setFormatter(letsintern_format)
+normal_site_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+normal_site_handler.setFormatter(normal_site_format)
 # Add handlers to the logger
-letsintern_logger.addHandler(letsintern_handler)
+normal_site_logger.addHandler(normal_site_handler)
 
-#For InternShala
+#For career_site
 # Create a custom logger
-internshala_logger = logging.getLogger(__name__)
-# Create handlers for internshala
-internshala_handler = logging.FileHandler('internshala_logger.log')
-internshala_handler.setLevel(logging.ERROR)
-# Create formatters and add it to handlers for internshala
-internshala_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-internshala_handler.setFormatter(internshala_format)
-# Add handlers to the logger for internshala
-<<<<<<< HEAD
-internshala_logger.addHandler(internshala_handler) 
+career_site_logger = logging.getLogger(__name__)
+# Create handlers for career_site
+career_site_handler = logging.FileHandler('career_site_logger.log')
+career_site_handler.setLevel(logging.ERROR)
+# Create formatters and add it to handlers for career_site
+career_site_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+career_site_handler.setFormatter(career_site_format)
+# Add handlers to the logger for career_site
+career_site_logger.addHandler(career_site_handler) 
 
 # This logger has been currently moved to database/logger.py
 
@@ -34,8 +33,3 @@ internshala_logger.addHandler(internshala_handler)
 # db_format = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 # db_handler.setFormatter(db_format)
 # db_logger.addHandler(db_handler)
-=======
-internshala_logger.addHandler(internshala_handler)
-
- 
->>>>>>> ebe46b8b7bb200c40baf4c2f57d5c7102bf92877
