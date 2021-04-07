@@ -64,7 +64,8 @@ ROBOTSTXT_OBEY = True
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'InternTracker.pipelines.InterntrackerPipeline': 300,
-   'InternTracker.pipelines.CsvPipeline': 500,
+   # 'InternTracker.pipelines.CsvPipeline': 500,
+   'InternTracker.pipelines.DatabasePipeline': 500,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

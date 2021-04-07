@@ -17,7 +17,7 @@ class LetsIntern(scrapy.Spider):
 
     custom_settings = {'ITEM_PIPELINES': {
         'InternTracker.pipelines.InterntrackerPipeline': 300,
-        'InternTracker.pipelines.CsvPipeline': 500}}
+        'InternTracker.pipelines.DatabasePipeline': 500}}
 
     def parse(self, response):
         # Url to fetch the data
