@@ -6,7 +6,7 @@ class Database:
 
     def __init__(self):
         try:
-            file = open('InternTracker/Database/connection.config')
+            file = open('Database/connection.config')
             credentials_raw = file.read()
             credentials_dict = json.loads(credentials_raw)
         except:
@@ -19,6 +19,6 @@ class Database:
     def connect(self):
         try:
             connection = psycopg2.connect(f"dbname = {self.__dbname} user = {self.__user} password = {self.__password}")
+            return connection
         except:
             db_logger.error("Connecting database failed")
-        return connection
