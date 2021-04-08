@@ -73,5 +73,5 @@ class Internshala(scrapy.Spider):
                 posting['posting_date'] = ""
                 posting['category_id'] = ""
                 yield posting
-        except :
-            normal_site_logger.error("Error in storage item")
+        except Exception as e :
+            normal_site_logger.error(e)

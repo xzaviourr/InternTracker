@@ -1,11 +1,12 @@
 import psycopg2
 import json
 from Logger.logger import db_logger
+
 class Database:
 
     def __init__(self):
         try:
-            file = open('Database/connection.config')
+            file = open('InternTracker/Database/connection.config')
             credentials_raw = file.read()
             credentials_dict = json.loads(credentials_raw)
         except:
