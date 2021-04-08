@@ -1,6 +1,6 @@
 import psycopg2
-from connection import obj
-from logger import db_logger
+from Database.connection import Database
+from Logger.logger import db_logger
 
 tables = [
     """
@@ -85,6 +85,7 @@ tables = [
 
 try :
 
+    obj = Database()
     conn = obj.connect()
 
     cur = conn.cursor()

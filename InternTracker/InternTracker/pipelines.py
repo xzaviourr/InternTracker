@@ -8,7 +8,8 @@
 from itemadapter import ItemAdapter
 from scrapy.exporters import CsvItemExporter
 import psycopg2
-from connection import obj
+from Database.connection import Database
+from Logger.logger import db_logger
 
 class InterntrackerPipeline:
     def process_item(self, item, spider):
@@ -34,8 +35,8 @@ class InterntrackerPipeline:
 class DatabasePipeline(object) :
 
     def open_spider(self,spider) :
-
-        self.conn = obj.connect()
+        self.obj = Database()
+        self.conn = self.obj.connect()
         self.cur = self.conn.cursor()
     
     def close_spider(self,spider) :
@@ -44,7 +45,9 @@ class DatabasePipeline(object) :
         self.conn.close()
     
     def process_item(self,item,spider) :
-
-        self.cur.execute("""INSERT INTO Internships VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",("nextval('internships_internship_id_seq')",item['company_name'],item['start_date'],item['deadline'],item['stipendmin'],item['stipendmax'],item['number_of_applicants'],item['posting_date'],item['role'],item['category_id'],item['link'],item['location']))
+        try:
+            self.cur.execute("""INSERT INTO Internships VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",("nextval('internships_internship_id_seq')",item['company_name'],item['start_date'],item['deadline'],item['stipendmin'],item['stipendmax'],item['number_of_applicants'],item['posting_date'],item['role'],item['category_id'],item['link'],item['location']))
+        except error as e:
+            db_logger.error(e)
         self.conn.commit()
         return item

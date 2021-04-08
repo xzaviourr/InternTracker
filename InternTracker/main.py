@@ -1,5 +1,9 @@
 import scrapy
 from scrapy.crawler import CrawlerProcess
+
+from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import as_completed
+
 from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
 
