@@ -1,2 +1,3 @@
 venv/
 InternTracker/Database/connection.config
+Logger/

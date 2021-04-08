@@ -8,6 +8,11 @@ from concurrent.futures import as_completed
 from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
 
+# import sys
+
+# print(sys.path)
+
 process = CrawlerProcess(settings=get_project_settings())
 process.crawl(Internshala)
+process.crawl(LetsIntern)
 process.start()
