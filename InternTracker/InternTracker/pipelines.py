@@ -48,8 +48,20 @@ class DatabasePipeline(object) :
     def process_item(self,item,spider) :
 
         try:
-            self.cur.execute("""INSERT INTO internships VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)""",("nextval('internships_internship_id_seq')",item['company_name'],item['start_date'],item['deadline'],item['stipendmin'],item['stipendmax'],item['number_of_applicants'],item['posting_date'],item['role'],item['category_id'],item['link'],item['location']))
+            self.cur.execute(f"""INSERT INTO internships(internship_id,company_name,start_date,deadline,stipend_min,stipend_max,number_of_applicants,posting_date,role,category_id,link,location) VALUES (nextval('internships_internship_id_seq'),
+            '{item['company_name']}',
+            '{item['start_date']}',
+            '{item['deadline']}',
+            {int(item['stipendmin'])},
+            {int(item['stipendmax'])},
+            {int(item['number_of_applicants'])},
+            '{item['posting_date']}',
+            '{item['role']}',
+            {int(item['category_id'])},
+            '{item['link']}',
+            '{item['location']}')""")
+            self.conn.commit()
         except Exception as e:
             db_logger.error(e)
-        self.conn.commit()
+        
         return item

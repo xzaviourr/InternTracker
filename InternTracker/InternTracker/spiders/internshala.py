@@ -69,9 +69,9 @@ class Internshala(scrapy.Spider):
                 posting['stipendmax'] = stipends[i].split(' ')[0].split('-')[-1]
                 posting['deadline'] = dateformat(deadlines[i])
                 posting['link'] = "https://internshala.com" + link[i]
-                posting['number_of_applicants'] = ""
+                posting['number_of_applicants'] = 0
                 posting['posting_date'] = ""
-                posting['category_id'] = ""
+                posting['category_id'] = 0
                 yield posting
         except Exception as e :
             normal_site_logger.error(e)

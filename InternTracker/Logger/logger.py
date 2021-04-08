@@ -2,6 +2,9 @@ import logging
 
 #For normal_site
 # Create a custom logger
+# import sys
+# sys.path.append(InternTracker\Logger\logger.py)
+
 normal_site_logger = logging.getLogger(__name__)
 # Create handlers
 normal_site_handler = logging.FileHandler('Logger/normal_site_logger.log')
