@@ -10,7 +10,5 @@ from InternTracker.spiders.letsintern import *
 process = CrawlerProcess()
 
 process.crawl(Internshala)
-process.start()
-
 process.crawl(LetsIntern)
 process.start()
