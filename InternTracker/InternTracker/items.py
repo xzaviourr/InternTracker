@@ -5,28 +5,19 @@
 
 import scrapy
 
+# Unified item to be used for storing data in the database
 
-class InternshalaItem(scrapy.Item):
-    role = scrapy.Field()
-    company = scrapy.Field()
-    location = scrapy.Field()
+class InternshipPosting(scrapy.Item) :
+
+    company_name = scrapy.Field()
     start_date = scrapy.Field()
-    duration = scrapy.Field()
-    stipendmin = scrapy.Field()
-    stipendmax = scrapy.Field()
     deadline = scrapy.Field()
-    link = scrapy.Field()
-    pass
-
-class LetsInternItem(scrapy.Item):
-    job_no=scrapy.Field()
-    role = scrapy.Field()
-    company = scrapy.Field()
-    location = scrapy.Field()
-    start_date = scrapy.Field()
-    end_date=scrapy.Field()
-    deadline=scrapy.Field()
     stipendmin = scrapy.Field()
     stipendmax = scrapy.Field()
-    link=scrapy.Field()
+    number_of_applicants = scrapy.Field()
+    posting_date = scrapy.Field()
+    role = scrapy.Field()
+    category_id = scrapy.Field()
+    link = scrapy.Field()
+    location = scrapy.Field()
     pass

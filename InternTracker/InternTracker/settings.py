@@ -65,6 +65,7 @@ ROBOTSTXT_OBEY = True
 ITEM_PIPELINES = {
    'InternTracker.pipelines.InterntrackerPipeline': 300,
    'InternTracker.pipelines.CsvPipeline': 500,
+   'InternTracker.pipelines.DatabasePipeline': 600
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)

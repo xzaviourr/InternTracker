@@ -1,0 +1,21 @@
+2021-04-08 12:32:41,390 - Logger.logger - ERROR - Error in connection to database
+2021-04-08 12:37:43,420 - Logger.logger - ERROR - Error in storage item
+2021-04-08 12:40:36,098 - Logger.logger - ERROR - Error in storage item
+2021-04-08 15:39:22,228 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:40:36,170 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:41:58,125 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:42:10,549 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:47:02,772 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:47:07,648 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:47:50,084 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:47:56,809 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:48:02,605 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:56:09,265 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:56:15,456 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:56:25,989 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:56:38,841 - Logger.logger - ERROR - list index out of range
+2021-04-08 15:57:10,614 - Logger.logger - ERROR - list index out of range
+2021-04-08 16:07:05,068 - Logger.logger - ERROR - Credentials file cannot be opened
+2021-04-08 16:08:03,132 - Logger.logger - ERROR - Credentials file cannot be opened
+2021-04-08 16:08:54,895 - Logger.logger - ERROR - Connecting database failed
+2021-04-08 16:09:22,409 - Logger.logger - ERROR - Connecting database failed
