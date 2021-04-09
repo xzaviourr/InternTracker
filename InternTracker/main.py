@@ -7,6 +7,7 @@ from concurrent.futures import as_completed
 
 from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
+from InternTracker.spiders.google import *
 
 # import sys
 
@@ -15,4 +16,5 @@ from InternTracker.spiders.letsintern import *
 process = CrawlerProcess(settings=get_project_settings())
 process.crawl(Internshala)
 process.crawl(LetsIntern)
+process.crawl(Google)
 process.start()
