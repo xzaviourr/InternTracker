@@ -42,10 +42,10 @@ class Google(scrapy.Spider) :
                     posting = InternshipPosting()
                     posting['role'] = post['title']
                     posting['company_name'] = post['company_name']
-                    posting['location'] = location[:-1]
+                    posting['location'] = "" # location[:-1] UNEXPECTED CHARACTER ENCOUNTERED
                     posting['start_date'] = ""
-                    posting['stipendmin'] = ""
-                    posting['stipendmax'] = ""
+                    posting['stipendmin'] = 0
+                    posting['stipendmax'] = 0
                     posting['deadline'] = ""
                     posting['link'] = f"https://careers.google.com/jobs/results/{str(job_id)}/?degree=BACHELORS&distance=50&employment_type=INTERN"
                     posting['number_of_applicants'] = 0
