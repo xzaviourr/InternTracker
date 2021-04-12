@@ -9,9 +9,9 @@ from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
 from InternTracker.spiders.google import *
 
-# import sys
+from Database.database import create_database
 
-# print(sys.path)
+create_database()
 
 process = CrawlerProcess(settings=get_project_settings())
 process.crawl(Internshala)
