@@ -37,7 +37,7 @@ class Internshala(scrapy.Spider):
             roles = response.css(".heading_4_5 a::text").getall()
 
             companies = response.css(".heading_6 a::text").getall()
-            companies = [x.replace('\n','').strip() for x in companies]
+            companies = [x.replace('\n','').replace("'","").strip() for x in companies]
 
             locations = response.css(".location_link::text").getall()
 
@@ -49,7 +49,7 @@ class Internshala(scrapy.Spider):
             durations, deadlines = duration_and_deadline[0::2], duration_and_deadline[1::2]
         
             stipends = response.css(".stipend::text").getall()
-            stipends = [x.strip() for x in stipends]
+            stipends = [x.strip().replace("Unpaid","0") for x in stipends]
 
             link = response.css(".heading_4_5 a::attr(href)").getall()
         except :
@@ -65,8 +65,8 @@ class Internshala(scrapy.Spider):
                 posting['location'] = locations[i]
                 posting['start_date'] = start_dates[i]
                 # posting['duration'] = int(durations[i].split(' ')[0])
-                posting['stipendmin'] = stipends[i].split(' ')[0].split('-')[0]
-                posting['stipendmax'] = stipends[i].split(' ')[0].split('-')[-1]
+                posting['stipendmin'] = int(stipends[i].split(' ')[0].split('-')[0])
+                posting['stipendmax'] = int(stipends[i].split(' ')[0].split('-')[-1])
                 posting['deadline'] = dateformat(deadlines[i])
                 posting['link'] = "https://internshala.com" + link[i]
                 posting['number_of_applicants'] = 0
