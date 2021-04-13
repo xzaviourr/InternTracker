@@ -33,7 +33,7 @@ class Dunzo(scrapy.Spider):
             job_url="https://boards.greenhouse.io/embed/job_app?for=dunzo13&token="+job_id+"?gh_jid="+job_id+"&b=https%3A%2F%2Fwww.dunzo.com%2Fcareers.html"
             try:
                 yield scrapy.Request(url=str(job_url), callback=self.parse_url, meta={'posting': posting})
-                #parsing details of the job through the job_url
+                #parsing details of the job through the job_url. The job_url is different for each job_id
             except:
                 normal_site_logger.error("Error in getting details of job_id:"+job_id)
     
