@@ -14,7 +14,7 @@ class CsvPipeline(object):
     Stores each yielded item into csv file
     """
     def __init__(self):
-        self.file = open("InternTracker/spiders/internship_data.csv", 'wb')
+        self.file = open("InternTracker/spiders/csv_files/internship_data.csv", 'wb')
         self.exporter = CsvItemExporter(self.file)
         self.exporter.start_exporting()
 
