@@ -1,3 +1,5 @@
 venv/
 InternTracker/Database/connection.config
-Logger/
+**/__pycache__
+*.log
+InternTracker/InternTracker/spiders/csv_files

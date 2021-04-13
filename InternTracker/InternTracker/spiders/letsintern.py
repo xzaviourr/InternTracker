@@ -32,7 +32,7 @@ class LetsIntern(scrapy.Spider):
             posting = InternshipPosting()
             try:
                 # posting['job_no'] = i+1
-                posting['role'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["Title"]
+                posting['role'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["Title"].replace("'","")
                 posting['company_name'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["CompanyName"]
                 posting['location'] = r["resp"]["data"]["featured_jobs"][i]["_source"]["locationStr"]
                 posting['start_date'] = (r["resp"]["data"]["featured_jobs"][i]["_source"]["StartDate"][0:10])
@@ -43,12 +43,12 @@ class LetsIntern(scrapy.Spider):
                     pay = pay.split("-")  # breaking stipend into max and min
                 else:
                     pay = list(pay)
-                posting['stipendmin'] = pay[0]
-                posting['stipendmax'] = pay[-1]
+                posting['stipendmin'] = int(pay[0])
+                posting['stipendmax'] = int(pay[-1])
                 posting['link'] = "https://www.letsintern.com" +r["resp"]["data"]["featured_jobs"][i]["_source"]["publicLink"]
-                posting['number_of_applicants'] = ""
+                posting['number_of_applicants'] = 0
                 posting['posting_date'] = ""
-                posting['category_id'] = ""
+                posting['category_id'] = 0
                 yield posting
             except:
                 normal_site_logger.error("Error extracting job")
@@ -59,7 +59,7 @@ class LetsIntern(scrapy.Spider):
             try:
                 posting = InternshipPosting()
                 # posting['job_no'] = featured+i+1
-                posting['role'] = r["resp"]["data"]["jobs"][i]["_source"]["Title"]
+                posting['role'] = r["resp"]["data"]["jobs"][i]["_source"]["Title"].replace("'","")
                 posting['company_name'] = r["resp"]["data"]["jobs"][i]["_source"]["CompanyName"]
                 posting['location'] = r["resp"]["data"]["jobs"][i]["_source"]["locationString"]
                 posting['start_date'] = (r["resp"]["data"]["jobs"][i]["_source"]["StartDate"][0:10])
@@ -70,12 +70,12 @@ class LetsIntern(scrapy.Spider):
                     pay = pay.split("-")
                 else:
                     pay = list(pay)
-                posting['stipendmin'] = pay[0]
-                posting['stipendmax'] = pay[-1]
+                posting['stipendmin'] = int(pay[0])
+                posting['stipendmax'] = int(pay[-1])
                 posting['link'] = "https://www.letsintern.com" + r["resp"]["data"]["jobs"][i]["_source"]["publicLink"]
-                posting['number_of_applicants'] = ""
+                posting['number_of_applicants'] = 0
                 posting['posting_date'] = ""
-                posting['category_id'] = ""
+                posting['category_id'] = 0
                 yield posting
             except:
                 normal_site_logger.error("Error extracting job")
