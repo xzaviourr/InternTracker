@@ -21,3 +21,10 @@ class InternshipPosting(scrapy.Item) :
     link = scrapy.Field()
     location = scrapy.Field()
     pass
+
+class DunzoItem(scrapy.Item):
+    link = scrapy.Field()
+    role = scrapy.Field()
+    requirements = scrapy.Field()
+    responsibilities = scrapy.Field()
+    pass

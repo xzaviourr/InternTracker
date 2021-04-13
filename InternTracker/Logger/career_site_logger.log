@@ -19,3 +19,6 @@
 2021-04-08 16:08:03,132 - Logger.logger - ERROR - Credentials file cannot be opened
 2021-04-08 16:08:54,895 - Logger.logger - ERROR - Connecting database failed
 2021-04-08 16:09:22,409 - Logger.logger - ERROR - Connecting database failed
+2021-04-09 16:42:31,207 - Logger.logger - ERROR - Connecting database failed
+2021-04-09 16:44:41,389 - Logger.logger - ERROR - Connecting database failed
+2021-04-09 16:47:18,326 - Logger.logger - ERROR - Connecting database failed
