@@ -15,6 +15,7 @@ class CsvPipeline(object):
     """
     def __init__(self):
         self.file = open("InternTracker/spiders/csv_files/internship_data.csv", 'wb')
+        #self.file = open("internship_data.csv", 'wb')
         self.exporter = CsvItemExporter(self.file)
         self.exporter.start_exporting()
 
