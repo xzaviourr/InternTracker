@@ -10,6 +10,7 @@ from InternTracker.spiders.letsintern import *
 from InternTracker.spiders.google import *
 from InternTracker.spiders.microsoft import *
 from InternTracker.spiders.apple import *
+from InternTracker.spiders.uber import *
 
 from Database.database import create_database
 
@@ -21,4 +22,5 @@ process.crawl(LetsIntern)
 process.crawl(Google)
 process.crawl(Microsoft)
 process.crawl(Apple)
+process.crawl(Uber)
 process.start()
