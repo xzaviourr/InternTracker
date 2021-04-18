@@ -1,0 +1,1 @@
+web: gunicorn InternTracker.wsgi --log-file
