@@ -11,6 +11,7 @@ from InternTracker.spiders.google import *
 from InternTracker.spiders.microsoft import *
 from InternTracker.spiders.apple import *
 from InternTracker.spiders.uber import *
+from InternTracker.spiders.indeed import *
 
 from Database.database import create_database
 
@@ -23,4 +24,5 @@ process.crawl(Google)
 process.crawl(Microsoft)
 process.crawl(Apple)
 process.crawl(Uber)
+process.crawl(Indeed)
 process.start()
