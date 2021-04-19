@@ -12,6 +12,7 @@ from InternTracker.spiders.microsoft import *
 from InternTracker.spiders.apple import *
 from InternTracker.spiders.uber import *
 from InternTracker.spiders.qualcomm import *
+from InternTracker.spiders.indeed import *
 
 from Database.database import create_database
 
@@ -25,4 +26,5 @@ process.crawl(Microsoft)
 process.crawl(Apple)
 process.crawl(Uber)
 process.crawl(Qualcomm)
+process.crawl(Indeed)
 process.start()
