@@ -35,7 +35,8 @@ class Indeed(scrapy.Spider):
             roles = response.css(".title a::attr(title)").getall()
             companies = response.css(".sjcl div span::text").getall()
             # companies = [x.replace('\n','').replace("'","").strip() for x in companies]
-            locations = response.css(".sjcl span[2]::text").getall()
+            locations=[]
+            locations = response.xpath('//*[@class="location accessible-contrast-color-location"]/text()').getall()
             stipends = response.css(".salaryText::text").getall()
             link = response.css(".title a::attr(href)").getall()
             posted_before=response.css(".date::text").getall()
