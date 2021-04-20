@@ -28,3 +28,14 @@ class DunzoItem(scrapy.Item):
     requirements = scrapy.Field()
     responsibilities = scrapy.Field()
     pass
+
+# Item used to store data related to career site as lesser data is available
+
+class CareerSiteItem(scrapy.Item) :
+
+    role = scrapy.Field()
+    link = scrapy.Field()
+    location = scrapy.Field()
+    qualifications = scrapy.Field()
+    description = scrapy.Field()
+    pass
