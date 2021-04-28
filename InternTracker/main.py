@@ -9,6 +9,9 @@ from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
 from InternTracker.spiders.google import *
 from InternTracker.spiders.microsoft import *
+<<<<<<< HEAD
+from InternTracker.spiders.hellointern import *
+=======
 from InternTracker.spiders.apple import *
 from InternTracker.spiders.uber import *
 from InternTracker.spiders.qualcomm import *
@@ -17,15 +20,19 @@ from InternTracker.spiders.wayup import *
 from InternTracker.spiders.ycombinator import *
 from InternTracker.spiders.makeintern import *
 
+>>>>>>> bd97d3904d8fe43c215d57d3f94cde4bbac11b7c
 from Database.database import create_database
 
-create_database()
+#create_database()
 
 process = CrawlerProcess(settings=get_project_settings())
 process.crawl(Internshala)
 process.crawl(LetsIntern)
 process.crawl(Google)
 process.crawl(Microsoft)
+<<<<<<< HEAD
+process.crawl(Hellointern)
+=======
 process.crawl(Apple)
 process.crawl(Uber)
 process.crawl(Qualcomm)
@@ -33,4 +40,5 @@ process.crawl(Indeed)
 process.crawl(Wayup)
 process.crawl(Ycombinator)
 process.crawl(Makeintern)
+>>>>>>> bd97d3904d8fe43c215d57d3f94cde4bbac11b7c
 process.start()
