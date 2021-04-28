@@ -16,6 +16,7 @@ from InternTracker.spiders.indeed import *
 from InternTracker.spiders.wayup import *
 from InternTracker.spiders.ycombinator import *
 from InternTracker.spiders.makeintern import *
+from InternTracker.spiders.simplyhired import *
 
 from Database.database import create_database
 
@@ -33,4 +34,5 @@ process.crawl(Indeed)
 process.crawl(Wayup)
 process.crawl(Ycombinator)
 process.crawl(Makeintern)
+process.crawl(SimplyHired)
 process.start()
