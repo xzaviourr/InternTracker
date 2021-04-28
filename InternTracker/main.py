@@ -9,6 +9,13 @@ from InternTracker.spiders.internshala import *
 from InternTracker.spiders.letsintern import *
 from InternTracker.spiders.google import *
 from InternTracker.spiders.microsoft import *
+from InternTracker.spiders.apple import *
+from InternTracker.spiders.uber import *
+from InternTracker.spiders.qualcomm import *
+from InternTracker.spiders.indeed import *
+from InternTracker.spiders.wayup import *
+from InternTracker.spiders.ycombinator import *
+from InternTracker.spiders.makeintern import *
 
 from Database.database import create_database
 
@@ -19,4 +26,11 @@ process.crawl(Internshala)
 process.crawl(LetsIntern)
 process.crawl(Google)
 process.crawl(Microsoft)
+process.crawl(Apple)
+process.crawl(Uber)
+process.crawl(Qualcomm)
+process.crawl(Indeed)
+process.crawl(Wayup)
+process.crawl(Ycombinator)
+process.crawl(Makeintern)
 process.start()
