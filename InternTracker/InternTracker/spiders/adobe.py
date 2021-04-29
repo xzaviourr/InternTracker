@@ -10,9 +10,9 @@ import requests
 import csv
 import scrapy_splash
 
-class Qualcomm(scrapy.Spider) :
+class Adobe(scrapy.Spider) :
 
-    name = 'qualcomm_spy'
+    name = 'adobe_spy'
     # allowed_domains = []
 
     # Sending initial request to render the page
