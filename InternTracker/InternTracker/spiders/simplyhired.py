@@ -3,7 +3,7 @@ from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
-from Logger.logger import career_site_logger
+from Logger.logger import normal_site_logger
 
 class SimplyHired(scrapy.Spider) :
 
@@ -31,7 +31,7 @@ class SimplyHired(scrapy.Spider) :
             for i in range(1,number_of_pages + 1) :
                 yield scrapy.Request(url = f"{response.url}&pn={i}",callback = self.parse_page)
         except Exception as e :
-            career_site_logger.error(e)
+            normal_site_logger.error(e)
 
     # Going on each page and getting each post
     def parse_page(self,response) :
@@ -42,7 +42,7 @@ class SimplyHired(scrapy.Spider) :
             for post in posts :
                 yield scrapy.Request(url = f"https://{url}{post}",callback = self.parse_post)
         except Exception as e :
-            career_site_logger.error(e)
+            normal_site_logger.error(e)
 
     # Going on each post and getting the data from it
     def parse_post(self,response) :
@@ -72,4 +72,4 @@ class SimplyHired(scrapy.Spider) :
             posting['category_id'] = 0
             yield posting
         except Exception as e :
-            career_site_logger.error(e)
+            normal_site_logger.error(e)
