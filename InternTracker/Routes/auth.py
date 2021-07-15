@@ -1,6 +1,6 @@
 import psycopg2,bcrypt
-from connection import Database
-from logger import db_logger
+from Database.connection import Database
+from Logger.logger import db_logger
 from flask import Flask,request
 from flask_restful import Resource, Api, reqparse
 from passlib.hash import sha256_crypt
