@@ -37,10 +37,9 @@ def register():
         else:
             #Hash the password before storing 
             hashed_password=sha256_crypt.encrypt(password)
-            print(hashed_password)
 
             # Add user in database
-            cur.execute(f"""INSERT into users(user_id,name,password,email,phone,year) values (1,'{name}','{hashed_password}','{email}','{phone}','{year}');commit;""")
+            cur.execute(f"""INSERT into users(name,password,email,phone,year) values ('{name}','{hashed_password}','{email}','{phone}','{year}');commit;""")
             
             return {"ok":"true"}
 
@@ -55,7 +54,6 @@ def login():
 
         #Fetch credentials from database
         cur.execute(f"""SELECT * FROM users WHERE email='{field}' OR phone='{field}';""")
-        print(f"""SELECT * FROM users WHERE email='{field}' OR phone='{field}';""")
 
         if cur.rowcount==0:
             #Check if user exists
