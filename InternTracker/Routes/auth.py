@@ -1,8 +1,9 @@
 import psycopg2,bcrypt
-from Database.connection import Database
-from Logger.logger import db_logger
+from connection import Database
+from logger import db_logger
 from flask import Flask,request
 from flask_restful import Resource, Api, reqparse
+from passlib.hash import sha256_crypt
 
 app = Flask(__name__)
 api = Api(app)
@@ -35,15 +36,11 @@ def register():
             return {"ok":"false","message":"User already registered"}
         else:
             #Hash the password before storing 
-            # hashed_password=str(bcrypt.hashpw(password.encode('utf8'), bcrypt.gensalt()))
-            # print(hashed_password)
-            # print(hashed_password.split("'"))
-            # print(("''").join(hashed_password.split("'")))
-            # hashed_password = ("''").join(hashed_password.split("'"))
-
+            hashed_password=sha256_crypt.encrypt(password)
+            print(hashed_password)
 
             # Add user in database
-            cur.execute(f"""INSERT into users(user_id,name,password,email,phone,year) values (1,'{name}','{password}','{email}','{phone}','{year}');commit;""")
+            cur.execute(f"""INSERT into users(user_id,name,password,email,phone,year) values (1,'{name}','{hashed_password}','{email}','{phone}','{year}');commit;""")
             
             return {"ok":"true"}
 
@@ -67,7 +64,7 @@ def login():
             #Compare password and send response
             db_password = cur.fetchone()[2]
 
-            if password==db_password:
+            if sha256_crypt.verify(password,db_password):
                 return {"ok":"true"}
             else:
                 return {"ok":"false","message":"invalid credentials"}
