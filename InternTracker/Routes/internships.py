@@ -63,7 +63,7 @@ def about_internship(id):
         if cur.rowcount==0:
             return {"ok":"false","message":"invalid id"}
         else:
-            return {"ok":"true","data":cur.fetchall()}
+            return {"ok":"true","data":cur.fetchall()[0]}
 
 
 
