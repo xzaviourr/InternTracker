@@ -42,11 +42,13 @@ def internships(page):
 
         #Applying filters
         category = request.json.get("category")
-        stipends = request.json.get("deadline")
+        stipends = request.json.get("stipend")
         if category and not stipends:
             query += f""" WHERE role='{category}'"""
         if stipends and not category:
             query += f""" WHERE stipend_min>{stipends}"""
+        if stipends and category:
+            query += f""" WHERE stipend_min>{stipends} AND role='{category}'"""
         query += f""" OFFSET {(page-1)*25} LIMIT 25"""
 
         cur.execute(query)
