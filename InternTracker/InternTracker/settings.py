@@ -16,6 +16,8 @@ NEWSPIDER_MODULE = 'InternTracker.spiders'
 
 SPLASH_URL = 'http://localhost:8050'
 DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
+    'InternTracker.middlewares.ProxyMiddleware': 100,
     'rotating_proxies.middlewares.RotatingProxyMiddleware': 610,
     'rotating_proxies.middlewares.BanDetectionMiddleware': 620,
     'scrapy_splash.SplashCookiesMiddleware': 723,
@@ -106,6 +108,10 @@ ITEM_PIPELINES = {
 
 
 # For proxies 
-ROTATING_PROXY_LIST_PATH = 'proxies.txt'
-
-ROTATING_PROXY_BAN_POLICY = 'project.policy.BanPolicy'
+ROTATING_PROXY_LIST_PATH = 'InternTracker\proxies.txt'
+ROTATING_PROXY_BAN_POLICY = 'InternTracker.policy.BanPolicy'
+# Proxy mode
+# 0 = Every requests have different proxy
+# 1 = Take only one proxy from the list and assign it to every requests
+# 2 = Put a custom proxy to use in the settings
+PROXY_MODE = 0
