@@ -22,7 +22,6 @@ except Exception as e:
 # For registering a user
 @app.route("/register",methods=["GET","POST"])
 def register():
-    print(request.json)
     if request.method == "POST":
         name=request.json.get("name")
         password=request.json.get("password")
