@@ -7,6 +7,7 @@ from scrapy import signals
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+from w3lib.http import basic_auth_header
 
 
 class InterntrackerSpiderMiddleware:
@@ -101,3 +102,7 @@ class InterntrackerDownloaderMiddleware:
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+class ProxyMiddleware(object): 
+    def process_request(self, request, spider):
+        request.headers["Proxy-Authorization"] = basic_auth_header("<proxy_user>", "<proxy_pass>")
