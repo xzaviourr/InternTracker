@@ -107,3 +107,5 @@ ITEM_PIPELINES = {
 
 # For proxies 
 ROTATING_PROXY_LIST_PATH = 'proxies.txt'
+
+ROTATING_PROXY_BAN_POLICY = 'project.policy.BanPolicy'
