@@ -1,3 +1,5 @@
+# Use this main.py for testing purposes only otherwise use new_main.py
+
 import scrapy
 from scrapy.crawler import CrawlerProcess
 from scrapy.utils.project import get_project_settings
