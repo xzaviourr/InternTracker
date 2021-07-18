@@ -33,14 +33,14 @@ class Ycombinator(scrapy.Spider):
                 posting['role'] = roles[i]
                 posting['company_name'] = companies[i]
                 posting['location'] = locations[i]+" "
-                posting['start_date'] = "-"
-                posting['stipendmin'] = "-"
-                posting['stipendmax'] = "-"
-                posting['deadline'] = "-"
-                posting['link'] = link[i]
-                posting['number_of_applicants'] = "-"
+                posting['start_date'] = "0"
+                posting['stipendmin'] = "0"
+                posting['stipendmax'] = "0"
+                posting['deadline'] = "0"
+                posting['link'] = link[i]+" "
+                posting['number_of_applicants'] = "0"
                 posting['posting_date'] = ""
-                posting['category_id'] = "-"
+                posting['category_id'] = "0"
                 yield posting
         except Exception as e :
             normal_site_logger.error(e)

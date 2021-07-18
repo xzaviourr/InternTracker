@@ -66,7 +66,7 @@ class SimplyHired(scrapy.Spider) :
             posting['stipendmin'] = 0
             posting['stipendmax'] = 0
             posting['deadline'] = ""
-            posting['link'] = response.url
+            posting['link'] = response.url + " "
             posting['number_of_applicants'] = 0
             posting['posting_date'] = ""
             posting['category_id'] = 0
