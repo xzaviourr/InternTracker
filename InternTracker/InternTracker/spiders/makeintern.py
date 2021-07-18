@@ -57,7 +57,7 @@ class Makeintern(scrapy.Spider):
                 posting['link'] = link[i]+" "
                 posting['number_of_applicants'] = number_of_applicants[i]
                 posting['posting_date'] = posting_dates[i]
-                posting['category_id'] = "-"
+                posting['category_id'] = "0"
                 yield posting
         except Exception as e :
             normal_site_logger.error(e)
