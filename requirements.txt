@@ -52,7 +52,6 @@ six==1.15.0
 sqlparse==0.4.1
 tomli==1.0.4
 Twisted==21.2.0
-twisted-iocpsupport==1.0.1
 typing==3.7.4.3
 urllib3==1.26.4
 w3lib==1.22.0
