@@ -102,4 +102,5 @@ def create_database():
 
     except :
 
-        db_logger.error("Error in connection to database")
+        # db_logger.error("Error in connection to database")
+        print("ERROR IN CREATING TABLES")
