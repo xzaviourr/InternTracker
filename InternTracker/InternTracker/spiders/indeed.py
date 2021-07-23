@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import normal_site_logger
@@ -20,7 +21,8 @@ class Indeed(scrapy.Spider):
     name = "indeed"
     # allowed_domains = ["https://indeed.com"]
     start_urls = ["https://in.indeed.com/jobs?q=internship+web+development&start="]
-
+    close_spider = False
+    
     def parse(self,response) :
     
         try :
@@ -31,6 +33,9 @@ class Indeed(scrapy.Spider):
             normal_site_logger.error("Error in getting pages")
     def parse_page(self, response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             roles = response.css(".title a::attr(title)").getall()
             companies = response.css(".sjcl div span::text").getall()

@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import career_site_logger
@@ -19,7 +20,8 @@ class Apple(scrapy.Spider) :
     name = "apple_spy"
     # allowed_domains = []
     start_urls = ['https://jobs.apple.com/en-us/search?sort=relevance&key=engineering&team=internships-STDNT-INTRN']
-
+    close_spider = False
+    
     # Getting total number of pages and then going on each page
     def parse(self,response) :
         
@@ -42,7 +44,10 @@ class Apple(scrapy.Spider) :
 
     # Going into every post and then processing the data from it
     def parse_post(self,response) :
-
+        
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             role = response.css('#jdPostingTitle::text').get()
             locations = response.css('#job-location-name span::text').getall()

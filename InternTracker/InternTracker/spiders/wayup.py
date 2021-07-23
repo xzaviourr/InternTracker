@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import normal_site_logger
@@ -8,7 +9,8 @@ from Logger.logger import normal_site_logger
 class Wayup(scrapy.Spider):
     name="wayup"
     start_urls=['https://www.wayup.com/s/internships/it/',]
-
+    close_spider = False
+    
     def parse(self,response):
         #scraping the url
         try:
@@ -17,6 +19,10 @@ class Wayup(scrapy.Spider):
             normal_site_logger.error("Error in getting page")
 
     def parse_jobs(self,response):
+
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         #getting data of jobs
         try:
             roles = response.css('.Heading__StyledHeading-ps7l2i-0 div::text').getall()

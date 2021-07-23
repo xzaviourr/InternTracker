@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import normal_site_logger
@@ -18,6 +19,7 @@ class SimplyHired(scrapy.Spider) :
         "https://www.simplyhired.ca/search?q=computer+science&jt=internship",
         "https://www.simplyhired.com/search?q=computer+science&jt=internship"
         ]
+    close_spider = False
 
     # Going on each url and getting each page
     def parse(self,response) :
@@ -47,6 +49,9 @@ class SimplyHired(scrapy.Spider) :
     # Going on each post and getting the data from it
     def parse_post(self,response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             title = response.css('.viewjob-jobTitle::text').get()
             company_and_location = response.css('.viewjob-labelWithIcon::text').getall()

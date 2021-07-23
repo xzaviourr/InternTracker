@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import career_site_logger
@@ -10,7 +11,8 @@ class Uber(scrapy.Spider) :
     name = "uber_spy"
     # allowed_domains = []
     start_urls = ['https://www.uber.com/us/en/careers/list/?department=University&team=Engineering']
-
+    close_spider = False
+    
     # Getting total pages and going to each page
     def parse(self,response) :
 
@@ -25,6 +27,9 @@ class Uber(scrapy.Spider) :
     # Getting the posting data all at once from each main page and processing it
     def parse_page(self,response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             # Extracting data form posting page is causing problems probably splash needs to be used, currently data is taken from main page all at once
             roles = response.css('.l1 a::text').getall()
