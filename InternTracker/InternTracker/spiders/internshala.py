@@ -3,7 +3,7 @@ from scrapy import Spider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
-from Logger.logger import normal_site_logger
+# from Logger.logger import normal_site_logger
 import time
 
 def dateformat(date) :

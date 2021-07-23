@@ -1,6 +1,6 @@
 import psycopg2
 import json
-from Logger.logger import db_logger
+# from Logger.logger import db_logger
 
 class Database:
 
