@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import career_site_logger
@@ -13,11 +14,14 @@ class GoldmanSachs(scrapy.Spider) :
     name = "goldmansachs_spy"
     # allowed_domains = []
     start_urls = ['https://www.goldmansachs.com/careers/students/programs/programs-list.json']
+    close_spider = False
 
     def parse(self,response) :
 
-        try :
-            
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
+        try :  
             # Getting all the postings 
             r = requests.get(response.url).json()
             posts = r['programs']

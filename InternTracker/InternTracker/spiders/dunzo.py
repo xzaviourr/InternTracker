@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import DunzoItem
 from Logger.logger import normal_site_logger
@@ -9,7 +10,8 @@ class Dunzo(scrapy.Spider):
     name = "dunzo"
     #allowed_domains = ["https://dunzo.com","https://www.greenhouse.io/"]
     start_urls = ["https://boards.greenhouse.io/embed/job_board?for=dunzo13&b=https%3A%2F%2Fwww.dunzo.com%2Fcareers.html"]
-
+    close_spider = False
+    
     custom_settings={
         'ITEM_PIPELINES' : {
             'InternTracker.pipelines.InterntrackerPipeline': 300,
@@ -18,6 +20,10 @@ class Dunzo(scrapy.Spider):
     }
 
     def parse(self, response):
+
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try:
             #getting role and job_link for that particular role, from the job_board
             roles = response.xpath('//*[@department_id="4043932002"]/a/text()').getall()

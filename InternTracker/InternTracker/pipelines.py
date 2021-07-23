@@ -48,7 +48,13 @@ class DatabasePipeline(object) :
     
     def process_item(self,item,spider) :
 
+        # Another method to stop
+        # spider.crawler.engine.close_spider(self, reason='duplicate11111')
         try:
+            # Checks if given item already exists and stops spider if it does
+            self.cur.execute(f"""SELECT * FROM internships WHERE link = '{item['link']}'""")
+            if self.cur.rowcount :
+                spider.close_spider = True
             self.cur.execute(f"""INSERT INTO internships(internship_id,company_name,start_date,deadline,stipend_min,stipend_max,number_of_applicants,posting_date,role,category_id,link,location) VALUES (nextval('internships_internship_id_seq'),
             '{item['company_name']}',
             '{item['start_date']}',
