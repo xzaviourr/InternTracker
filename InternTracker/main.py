@@ -23,7 +23,7 @@ from InternTracker.spiders.internshala import *
 # from InternTracker.spiders.simplyhired import *
 from Database.database import create_database
 
-#create_database()
+create_database()
 print("****************PATH ****************")
 PATH = os.path.dirname(os.path.abspath(__file__))
 if PATH not in sys.path:
