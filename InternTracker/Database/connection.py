@@ -1,6 +1,10 @@
 import psycopg2
 import json
+import os
 # from Logger.logger import db_logger
+from dotenv import load_dotenv
+
+load_dotenv()
 
 class Database:
 
@@ -12,10 +16,10 @@ class Database:
         except:
             db_logger.error('Credentials file cannot be opened')
 
-        self.__dbname = str(credentials_dict["dbname"])
-        self.__user = str(credentials_dict["user"])
-        self.__password = str(credentials_dict["password"])
-        self.__host = str(credentials_dict["host"])
+        self.__dbname = str(os.getenv('DB_NAME'))
+        self.__user = str(os.getenv('DB_USER'))
+        self.__password = str(os.getenv('DB_PASSWORD'))
+        self.__host = str(os.getenv('DB_HOST'))
 
     def connect(self):
         try:
