@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import normal_site_logger
@@ -12,7 +13,8 @@ class Makeintern(scrapy.Spider):
     software_list=['https://www.makeintern.com/internships/search/software-development?page='+str(i) for i in range(1,30)]
     graphics_list=['https://www.makeintern.com/internships/search/graphic-design?page='+str(i) for i in range(1,30)]
     start_urls=web_list+software_list
-
+    close_spider = False
+    
     def parse(self,response):
         #scraping the url
         try:
@@ -22,6 +24,10 @@ class Makeintern(scrapy.Spider):
             normal_site_logger.error("Error in getting page")
 
     def parse_jobs(self,response):
+
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         #getting data of jobs
         try:
             roles = response.css('.intern_headings a::text').getall()

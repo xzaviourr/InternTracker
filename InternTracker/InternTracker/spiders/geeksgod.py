@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import normal_site_logger
@@ -10,7 +11,8 @@ class GeeksGod(scrapy.Spider) :
     name = "geeksgod_spy"
     # allowed_domains = []
     start_urls = ["https://geeksgod.com/category/internships"]
-
+    close_spider = False
+    
     # Getting total number of pages and going on each page
     def parse(self,response) :
 
@@ -34,6 +36,9 @@ class GeeksGod(scrapy.Spider) :
     # Getting on each post and getting the data
     def parse_post(self,response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             info = response.css('.vk_jobInfo_table tbody tr td::text').getall()
             if (len(info) != 0) :

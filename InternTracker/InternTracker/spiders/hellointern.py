@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 
@@ -11,6 +12,7 @@ def dateformat(date) :
         date[0] = '0' + date[0]
     correct = date[0] + '-' + months[date[1]] + '-' + date[2]
     return correct
+
 def dateformat2(s) :
     print(s)
     s=s.split(" ")
@@ -24,8 +26,13 @@ class Hellointern(scrapy.Spider) :
 
     name = "hellointern_spy"
     start_urls =["https://www.hellointern.com/search/by_filters"]
-
+    close_spider = False
+    
     def parse(self, response) :
+
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         roles = response.css('.title_salary span a::text').getall()
         companies = response.css(".name_span a::text").getall()
         locations = response.css(".location_span::text").getall()   

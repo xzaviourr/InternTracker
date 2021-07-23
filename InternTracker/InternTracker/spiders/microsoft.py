@@ -1,6 +1,7 @@
 import scrapy
 from scrapy import Spider
 from scrapy.selector import Selector
+from scrapy.exceptions import CloseSpider
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
 from Logger.logger import career_site_logger
@@ -12,7 +13,8 @@ import scrapy_splash
 class Microsoft(scrapy.Spider) :
 
     name = "microsoft_spy"
-
+    close_spider = False
+    
     # Getting the first initial request from the site
     def start_requests(self) :
 
@@ -45,6 +47,9 @@ class Microsoft(scrapy.Spider) :
     # Processing the data from every post
     def parse_post(self,response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             post_details = response.css(".lable-text::text").getall()
             # location = ""

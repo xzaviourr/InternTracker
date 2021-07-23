@@ -1,5 +1,6 @@
 import scrapy
 from scrapy import Spider
+from scrapy.exceptions import CloseSpider
 from scrapy.selector import Selector
 from scrapy.http import TextResponse as response
 from InternTracker.items import InternshipPosting
@@ -20,9 +21,10 @@ class Internshala(scrapy.Spider):
     name = "internshala_spy"
     # allowed_domains = ["https://internshala.com/internships/engineering-internship/"]
     start_urls = ["https://internshala.com/internships/engineering-internship/"]
+    close_spider = False
 
     def parse(self,response) :
-
+        
         try :
             number_of_pages = int(response.css("#total_pages::text").get())
             for i in range(1,number_of_pages + 1) :
@@ -33,6 +35,9 @@ class Internshala(scrapy.Spider):
 
     def parse_page(self, response) :
 
+        # Closes the spider if record already scraped before
+        if self.close_spider :
+            raise CloseSpider(reason = "ALREADY SCRAPED")
         try :
             roles = response.css(".heading_4_5 a::text").getall()
 
