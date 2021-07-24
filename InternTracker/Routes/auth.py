@@ -1,6 +1,6 @@
 import psycopg2,bcrypt
-from Database.connection import Database
-from Logger.logger import db_logger
+from connection import Database
+# from Logger.logger import db_logger
 from flask import Flask,request
 from flask_restful import Resource, Api, reqparse
 from passlib.hash import sha256_crypt
@@ -15,7 +15,7 @@ try :
     print("Connected to the database successfully")
 
 except Exception as e:
-    db_logger.error("Error in connection to database")
+    # db_logger.error("Error in connection to database")
     print(e)
 
 
@@ -70,4 +70,4 @@ def login():
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=80)
+    app.run(debug=True,port=81)
