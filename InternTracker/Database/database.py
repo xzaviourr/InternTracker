@@ -1,6 +1,6 @@
 import psycopg2
 from Database.connection import Database
-from Logger.logger import db_logger
+# from Logger.logger import db_logger
 
 def create_database():
     tables = [
@@ -102,4 +102,5 @@ def create_database():
 
     except :
 
-        db_logger.error("Error in connection to database")
+        # db_logger.error("Error in connection to database")
+        print("ERROR IN CREATING TABLES")

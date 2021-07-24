@@ -3,3 +3,4 @@ InternTracker/Database/connection.config
 **/__pycache__
 *.log
 InternTracker/InternTracker/spiders/csv_files
+.env
